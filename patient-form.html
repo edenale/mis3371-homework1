@@ -1,0 +1,138 @@
+<!--
+Program name: patient-form.html
+Author: Eden A.
+Date created: 2025-04-17
+Date last edited: 2025-04-17
+Version: 1.0
+Description: A patient registration form that collects personal, contact, and health details using various HTML form elements, styled with an external CSS file. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We'R'Docs Medical - Patient Form</title>
+    <link href="style.css" rel="stylesheet">
+    <script>
+        function displayDate() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("date-display").innerText = today.toLocaleDateString("en-US", options);
+        }
+    </script>
+</head>
+<body onload="displayDate()">
+    <div class="banner">
+        <img src="logo.png" alt="Logo" width="50" height="50">
+        <h1>We'R'Docs Medical</h1>
+        <p>Today is: <span id="date-display"></span></p>
+    </div>
+
+    <form action="thankyou.html">
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="first_name" maxlength="30" required></td>
+                <td>Middle Initial:</td>
+                <td><input type="text" name="middle_initial" maxlength="1"></td>
+                <td>Last Name:</td>
+                <td><input type="text" name="last_name" maxlength="30" required></td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td><input type="text" name="dob" placeholder="MM/DD/YYYY" required></td>
+                <td>SSN:</td>
+                <td><input type="password" name="ssn" maxlength="11" required></td>
+            </tr>
+            <tr>
+                <td>Address Line 1:</td>
+                <td colspan="3"><input type="text" name="address1" maxlength="30" required></td>
+            </tr>
+            <tr>
+                <td>Address Line 2:</td>
+                <td colspan="3"><input type="text" name="address2" maxlength="30"></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" name="city" maxlength="30" required></td>
+                <td>State:</td>
+                <td>
+                    <select name="state" required>
+                        <option value="">Select</option>
+                        <option value="TX">Texas</option>
+                        <!-- Add all 50 states, DC, and PR here -->
+                    </select>
+                </td>
+                <td>Zip Code:</td>
+                <td><input type="text" name="zip" maxlength="10" required></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td colspan="3"><input type="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td>Describe Symptoms:</td>
+                <td colspan="5"><textarea name="symptoms" rows="3" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p>Have you had:</p>
+                    <label><input type="checkbox" name="illness" value="chickenpox"> Chicken Pox</label>
+                    <label><input type="checkbox" name="illness" value="measles"> Measles</label>
+                    <label><input type="checkbox" name="illness" value="covid"> Covid-19</label>
+                    <label><input type="checkbox" name="illness" value="smallpox"> Small Pox</label>
+                    <label><input type="checkbox" name="illness" value="tetanus"> Tetanus</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td colspan="5">
+                    <label><input type="radio" name="gender" value="male"> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
+                    <label><input type="radio" name="gender" value="other"> Other</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Vaccinated:</td>
+                <td colspan="5">
+                    <label><input type="radio" name="vaccinated" value="yes"> Yes</label>
+                    <label><input type="radio" name="vaccinated" value="no"> No</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Have Insurance:</td>
+                <td colspan="5">
+                    <label><input type="radio" name="insurance" value="yes"> Yes</label>
+                    <label><input type="radio" name="insurance" value="no"> No</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Health Level (1-10):</td>
+                <td colspan="5">
+                    <input type="range" name="health" min="1" max="10">
+                </td>
+            </tr>
+            <tr>
+                <td>User ID:</td>
+                <td><input type="text" name="userid" maxlength="20" required></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" required></td>
+                <td>Confirm Password:</td>
+                <td><input type="password" name="confirm_password" required></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="reset" value="CLEAR AND START OVER"></td>
+                <td colspan="3"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+
+    <div class="footer">
+        <p>We'R'Docs Medical | <button onclick="alert('Contact us at support@werdocs.com')">Contact Us</button> | PO BOX 18881, Sugar Land, TX 77496</p>
+    </div>
+
+<!-- End of HTML file -->
+</body>
+</html>
