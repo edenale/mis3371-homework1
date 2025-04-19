@@ -1,1 +1,171 @@
 
+<!--
+Program name: homework3.html
+Author: Eden A.
+Date created: 2025-04-19
+Date last edited: 2025-04-19
+Version: 1.0
+Description: Homework 3 - Full form validation using JavaScript for MIS3371, including dynamic error messages and conditional submit.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health is Wealth Medical - Homework 3</title>
+  <link href="style3.css" rel="stylesheet">
+  <script src="script3.js" defer></script>
+</head>
+<body onload="displayDate()">
+  <div class="banner">
+    <img src="logo.png" alt="Logo" width="50" height="50">
+    <h1>Health is Wealth Medical</h1>
+    <p>Today is: <span id="date-display"></span></p>
+  </div>
+
+  <form id="patientForm" novalidate>
+    <table>
+      <tr>
+        <td>First Name:</td>
+        <td>
+          <input type="text" id="firstName" title="1-30 characters: letters, apostrophes, dashes only">
+          <span class="error" id="firstNameError"></span>
+        </td>
+        <td>Middle Initial:</td>
+        <td>
+          <input type="text" id="middleInitial" title="Optional. Only 1 letter">
+          <span class="error" id="middleInitialError"></span>
+        </td>
+        <td>Last Name:</td>
+        <td>
+          <input type="text" id="lastName" title="1-30 characters: letters, apostrophes, dashes only">
+          <span class="error" id="lastNameError"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Date of Birth:</td>
+        <td>
+          <input type="date" id="dob">
+          <span class="error" id="dobError"></span>
+        </td>
+        <td>ID Number (SSN format):</td>
+        <td>
+          <input type="password" id="idNumber" maxlength="11" title="9-digit number, format: XXX-XX-XXXX">
+          <span class="error" id="idError"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>
+          <input type="email" id="email">
+          <span class="error" id="emailError"></span>
+        </td>
+        <td>Phone:</td>
+        <td>
+          <input type="tel" id="phone" title="Format: 000-000-0000">
+          <span class="error" id="phoneError"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Address Line 1:</td>
+        <td colspan="3">
+          <input type="text" id="address1" title="2-30 characters">
+          <span class="error" id="address1Error"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Address Line 2:</td>
+        <td colspan="3">
+          <input type="text" id="address2" title="Optional: 2-30 characters">
+          <span class="error" id="address2Error"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>City:</td>
+        <td>
+          <input type="text" id="city">
+          <span class="error" id="cityError"></span>
+        </td>
+        <td>State:</td>
+        <td>
+          <select id="state">
+            <option value="">Select</option>
+            <option value="TX">TX</option>
+            <option value="CA">CA</option>
+            <option value="NY">NY</option>
+            <!-- Add remaining states or I can generate full list if you want -->
+          </select>
+          <span class="error" id="stateError"></span>
+        </td>
+        <td>Zip:</td>
+        <td>
+          <input type="text" id="zip" title="5-digit zip">
+          <span class="error" id="zipError"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <p>Check all that apply:</p>
+          <label><input type="checkbox" name="illness" value="Chicken Pox"> Chicken Pox</label>
+          <label><input type="checkbox" name="illness" value="Measles"> Measles</label>
+          <label><input type="checkbox" name="illness" value="Covid-19"> Covid-19</label>
+          <label><input type="checkbox" name="illness" value="Mumps"> Mumps</label>
+          <label><input type="checkbox" name="illness" value="Heart Disease"> Heart Disease</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Vaccinated:</td>
+        <td colspan="5">
+          <label><input type="radio" name="vaccinated" value="Yes"> Yes</label>
+          <label><input type="radio" name="vaccinated" value="No"> No</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Pain Level (1–10):</td>
+        <td colspan="5">
+          <input type="range" id="painRange" min="1" max="10" step="1" value="5" oninput="updatePainLevel(this.value)">
+          <span id="painDisplay">Pain Level: 5/10</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Describe Symptoms:</td>
+        <td colspan="5">
+          <textarea id="symptoms" rows="3" cols="50" title="Optional"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>User ID:</td>
+        <td>
+          <input type="text" id="userid">
+          <span class="error" id="useridError"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td>
+          <input type="password" id="password">
+          <span class="error" id="passwordError"></span>
+        </td>
+        <td>Confirm Password:</td>
+        <td>
+          <input type="password" id="confirmPassword">
+          <span class="error" id="confirmPasswordError"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <input type="button" value="VALIDATE" onclick="validateAll()">
+        </td>
+        <td colspan="3">
+          <input type="submit" id="submitBtn" value="SUBMIT" style="display: none;">
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <div class="footer">
+    <p>Health is Wealth Medical | <button onclick="alert('Contact us at support@healthiswealthmedical')">Contact Us</button> | 1233, Mission Bend, TX 77083</p>
+  </div>
+<!-- End of HTML -->
+</body>
+</html>
