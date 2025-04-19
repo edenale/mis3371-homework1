@@ -136,13 +136,14 @@ Description: Homework 2 - Enhanced patient registration form with form validatio
                     <label><input type="radio" name="vaccinated" value="No"> No</label>
                 </td>
             </tr>
-            <tr>
-                <td>Health Level ($20,000 - $200,000):</td>
-                <td colspan="5">
-                    <input type="range" id="salaryRange" min="20000" max="200000" step="1000" value="60000" oninput="updateSalaryValue(this.value)">
-                    <span id="salaryDisplay">$60,000</span>
-                </td>
-            </tr>
+           <tr>
+    <td>Pain Level (1–10):</td>
+    <td colspan="5">
+        <input type="range" id="painRange" min="1" max="10" step="1" value="5" oninput="updatePainLevel(this.value)">
+        <span id="painDisplay">Pain Level: 5/10</span>
+    </td>
+</tr>
+
             <tr>
                 <td>Describe Symptoms:</td>
                 <td colspan="5"><textarea name="symptoms" rows="3" cols="50" pattern="[^"]*" title="Avoid using double quotes (\")"></textarea></td>
