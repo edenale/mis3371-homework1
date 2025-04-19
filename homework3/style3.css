@@ -1,0 +1,106 @@
+/*
+Program name: style3.css
+Author: Eden A.
+Date created: 2025-04-19
+Date last edited: 2025-04-19
+Version: 1.0
+Description: External CSS for Homework 3 - Styling form, layout, banner, error messages, and interactive elements.
+*/
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #ffe6f0;
+  margin: 20px;
+  color: #330000;
+}
+
+h1 {
+  color: #cc0044;
+}
+
+.banner {
+  background-color: #ffccd5;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+}
+
+.banner img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-spacing: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #cc0044;
+  border-radius: 4px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+  background-color: #ff6699;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover {
+  background-color: #cc0044;
+}
+
+.error {
+  display: block;
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+  min-height: 18px;
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #ffd6e0;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 10px;
+  color: #660000;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#painDisplay {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* End of style3.css */
