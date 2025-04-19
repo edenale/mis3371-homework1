@@ -18,9 +18,10 @@ function displayDate() {
     dobInput.max = maxDate;
     dobInput.min = minDate;
 }
+function updatePainLevel(val) {
+    document.getElementById("painDisplay").innerText = `Pain Level: ${val}/10`;
+}
 
-function updateSalaryValue(val) {
-    document.getElementById("salaryDisplay").innerText = `$${Number(val).toLocaleString()}`;
 }
 
 function validateForm() {
@@ -63,8 +64,8 @@ function reviewData() {
     const vaccinated = form["vaccinated"].value;
     output += `<li>Vaccinated: ${vaccinated || "Not selected"}</li>`;
 
-    const salary = document.getElementById("salaryRange").value;
-    output += `<li>Desired Salary: $${Number(salary).toLocaleString()}</li>`;
+    const pain = document.getElementById("painRange").value;
+output += `<li>Pain Level: ${pain}/10</li>`;
 
     output += `<li>Described Symptoms:<br>${form["symptoms"].value || "None"}</li>`;
     output += `<li>User ID: ${form["userid"].value.toLowerCase()}</li>`;
