@@ -1,5 +1,7 @@
 // script.js – Extra Credit JS Enhancements for Homework 4
 
+console.log("JS loaded");
+
 function setCookie(name, value, hours) {
   const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString();
   document.cookie = `${name}=${value}; expires=${expires}; path=/`;
@@ -23,8 +25,12 @@ function saveToLocalStorage() {
   const form = document.getElementById("patientForm");
   const data = {};
   for (const el of form.elements) {
-    if (el.name && (el.type !== "submit" && el.type !== "reset")) {
-      data[el.name] = el.type === "checkbox" || el.type === "radio" ? el.checked : el.value;
+    if (el.name && el.type !== "submit" && el.type !== "reset") {
+      if (el.type === "checkbox" || el.type === "radio") {
+        data[el.name] = el.checked;
+      } else {
+        data[el.name] = el.value;
+      }
     }
   }
   localStorage.setItem("formData", JSON.stringify(data));
@@ -70,8 +76,11 @@ function initializePage() {
     newUserLabel.style.display = "none";
   }
 
-  // Save data on every change
-  document.getElementById("patientForm").addEventListener("input", saveToLocalStorage);
+  // Save every time input is updated
+  const form = document.getElementById("patientForm");
+  if (form) {
+    form.addEventListener("input", saveToLocalStorage);
+  }
 }
 
 function resetUser() {
@@ -96,5 +105,5 @@ function handleSubmit(event) {
   }
 
   alert("Form submitted successfully!");
-  window.location.href = "thankyou.html";
+  window.location.href = "thankyou.html"; // Navigate to the thank you page
 }
