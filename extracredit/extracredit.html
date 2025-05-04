@@ -1,57 +1,49 @@
-<!--
-Program name: extracredit.html
-Author: Eden A.
-Date created: 2025-05-04
-Version: 1.0
-Description: Enhanced patient form with localStorage, modal review, and dynamic UI features for MIS3371 extra credit.
--->
+<!-- extracredit.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extra Credit - Health is Wealth Medical</title>
-    <link rel="stylesheet" href="extracredit.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extra Credit - Health is Wealth Medical</title>
+  <link rel="stylesheet" href="extracredit.css">
+  <script src="extracredit.js" defer></script>
 </head>
-<body onload="initializePage()">
-    <header>
-        <h1 id="welcomeMessage">Welcome</h1>
-        <p>Today is <span id="date-display"></span></p>
-        <label id="newUserLabel" style="display:none;">
-            <input type="checkbox" onclick="resetUser()"> Not <span id="storedName"></span>? Click here to start as a new user.
-        </label>
-    </header>
+<body>
+  <header class="header">
+    <h1>Health is Wealth Medical</h1>
+    <p id="welcomeMessage"></p>
+    <label id="newUserLabel" style="display:none;">
+      <input type="checkbox" onclick="resetUser()"> Not <span id="storedName"></span>? Click to start as a new user.
+    </label>
+  </header>
 
-    <form id="patientForm" novalidate>
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" placeholder="000-000-0000" required>
-
-        <label><input type="checkbox" id="rememberMe" checked> Remember Me</label><br><br>
-
-        <button type="button" onclick="reviewData()">Review</button>
-    </form>
-
-    <!-- Modal for Review -->
-    <div id="modalReview" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Check your entries...</h2>
-            <div id="reviewOutput"></div>
-            <button onclick="submitData()">Submit</button>
-            <button onclick="closeModal()">Go Back</button>
-        </div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>We found saved data. Would you like to reload your previous form entries?</p>
+      <button onclick="loadLocalStorage()">Yes, reload</button>
+      <button onclick="clearLocalStorage()">No, clear</button>
     </div>
+  </div>
 
-    <footer>
-        <p>Health is Wealth Medical | Contact: support@healthiswealthmedical | 1233 Mission Bend, TX 77083</p>
-    </footer>
+  <form id="patientForm" onsubmit="return handleSubmit(event)">
+    <label>First Name: <input type="text" id="first_name" required></label>
+    <label>Email: <input type="email" id="email" required></label>
+    <label>Phone: <input type="tel" id="phone" pattern="\d{3}-\d{3}-\d{4}" required></label>
+    <label><input type="checkbox" id="rememberMe" checked> Remember Me</label>
+    <button type="button" onclick="reviewForm()">Review</button>
+    <input type="submit" value="Submit">
+  </form>
+
+  <div id="reviewSection" style="display:none;">
+    <h2>Check your entries...</h2>
+    <p id="reviewOutput"></p>
+    <button onclick="submitAfterReview()">Submit</button>
+    <button onclick="goBackToForm()">Go Back</button>
+  </div>
+
+  <footer class="footer">
+    <p>Health is Wealth Medical | support@healthiswealthmedical | 1233 Mission Bend, TX</p>
+  </footer>
 </body>
 </html>
-
