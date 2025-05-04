@@ -1,0 +1,53 @@
+<!--
+Program name: homework4.html
+Author: Eden A.
+Date created: 2025-04-29
+Date last edited: 2025-04-29
+Version: 1.0
+Description: Homework 4 - Patient form with iframe, fixed footer, and cookie-based personalization.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health is Wealth Medical - Homework 4</title>
+  <link href="style4.css" rel="stylesheet">
+  <script src="script4.js" defer></script>
+</head>
+<body onload="initializePage()">
+  <div id="header" class="header">
+    <img src="logo.png" alt="Logo" width="50" height="50">
+    <h1>Health is Wealth Medical</h1>
+    <p id="welcomeMessage"></p>
+    <label id="newUserLabel" style="display:none;">
+      <input type="checkbox" onclick="resetUser()"> Not <span id="storedName"></span>? Click here to start as a new user.
+    </label>
+  </div>
+
+  <iframe src="https://www.cdc.gov" width="100%" height="200px" style="border: 1px solid #ccc;"></iframe>
+
+  <form id="patientForm" onsubmit="return handleSubmit(event)">
+    <table>
+      <tr>
+        <td>First Name:</td>
+        <td><input type="text" id="first_name" name="first_name" required title="Enter your first name (1-30 characters)"></td>
+      </tr>
+      <!-- You can add more fields as needed here -->
+      <tr>
+        <td colspan="2">
+          <label><input type="checkbox" id="rememberMe" checked> Remember Me</label>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="reset" value="CLEAR AND START OVER"></td>
+        <td><input type="submit" value="SUBMIT"></td>
+      </tr>
+    </table>
+  </form>
+
+  <div class="footer">
+    <p>Health is Wealth Medical | <a href="#" onclick="alert('Email: support@healthiswealthmedical')">Contact Us</a> | 1233, Mission Bend, TX 77083</p>
+  </div>
+</body>
+</html>
