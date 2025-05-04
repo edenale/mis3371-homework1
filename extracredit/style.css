@@ -3,105 +3,117 @@ Program name: extracredit.css
 Author: Eden A.
 Date created: 2025-05-04
 Version: 1.0
-Description: Styles for Extra Credit form with modal and layout enhancements.
+Description: CSS for Extra Credit - styled banner, modal, form, and fixed footer.
 */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px;
-    background-color: #f8f2f4;
-    color: #333;
+  font-family: 'Times New Roman', serif;
+  background-color: #fff0f5;
+  margin: 0;
+  padding-bottom: 80px;
 }
 
-header {
-    background-color: #f9c0c0;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+.header {
+  background-color: #ffb6c1;
+  padding: 10px;
+  text-align: center;
+  position: relative;
 }
 
-footer {
-    background-color: #f2a3a3;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: white;
-    font-weight: bold;
+.footer {
+  background-color: #ff4d6d;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+iframe {
+  margin: 20px auto;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+table {
+  margin: 20px auto;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
 }
 
-input[type="text"], input[type="email"], input[type="tel"] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+input[type="text"],
+input[type="submit"],
+input[type="reset"],
+textarea {
+  padding: 6px;
+  margin-top: 5px;
+  width: 90%;
+  font-family: 'Times New Roman', serif;
 }
 
+input[type="submit"],
+input[type="reset"],
 button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #e6005c;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
 
+input[type="submit"]:hover,
+input[type="reset"]:hover,
 button:hover {
-    background-color: #cc0052;
+  background-color: #cc3b57;
 }
 
-/* Modal Styles */
+#newUserLabel {
+  font-size: 14px;
+  color: #333;
+}
+
+#welcomeMessage {
+  font-weight: bold;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* Modal Box */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 2px solid #888;
+  width: 60%;
+  border-radius: 8px;
+  text-align: center;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.modal-content button {
+  margin: 10px;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+/* Error styling for optional enhancements */
+.error {
+  color: red;
+  font-size: 14px;
+  min-height: 18px;
 }
