@@ -1,99 +1,104 @@
-/*
-Program name: extracredit.js
-Author: Eden A.
-Date created: 2025-05-04
-Version: 1.0
-Description: JavaScript for Extra Credit form - localStorage, modal review, cookie handling.
-*/
+// script.js
 
-function initializePage() {
-    const today = new Date();
-    document.getElementById("date-display").textContent = today.toDateString();
-
-    const firstName = getCookie("firstName");
-    const welcomeMsg = document.getElementById("welcomeMessage");
-    const storedName = document.getElementById("storedName");
-    const newUserLabel = document.getElementById("newUserLabel");
-
-    if (firstName) {
-        welcomeMsg.textContent = `Welcome back, ${firstName}`;
-        storedName.textContent = firstName;
-        newUserLabel.style.display = "inline";
-        document.getElementById("firstName").value = firstName;
-        loadLocalStorage();
-    } else {
-        welcomeMsg.textContent = "Welcome new user";
-    }
-}
-
-function saveToLocalStorage(field) {
-    const value = document.getElementById(field).value;
-    localStorage.setItem(field, value);
-}
-
-function loadLocalStorage() {
-    ["firstName", "email", "phone"].forEach(field => {
-        const value = localStorage.getItem(field);
-        if (value) document.getElementById(field).value = value;
-    });
-}
-
-function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + d.toUTCString();
-    document.cookie = `${name}=${value};${expires};path=/`;
+// Cookie handling
+function setCookie(name, value, hours) {
+  const date = new Date();
+  date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
+  document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
 }
 
 function getCookie(name) {
-    const cname = name + "=";
-    const decoded = decodeURIComponent(document.cookie);
-    const ca = decoded.split(';');
-    for (let c of ca) {
-        while (c.charAt(0) === ' ') c = c.substring(1);
-        if (c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
+  const cookieArr = document.cookie.split(";");
+  for (let cookie of cookieArr) {
+    cookie = cookie.trim();
+    if (cookie.startsWith(name + "=")) {
+      return cookie.substring(name.length + 1);
     }
-    return "";
+  }
+  return "";
 }
 
 function deleteCookie(name) {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    localStorage.clear();
+  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+function initializePage() {
+  const storedName = getCookie("firstName");
+  const welcome = document.getElementById("welcomeMessage");
+  const nameBox = document.getElementById("first_name");
+  const newUserLabel = document.getElementById("newUserLabel");
+  const storedNameSpan = document.getElementById("storedName");
+
+  if (storedName) {
+    welcome.innerText = `Welcome back, ${storedName}`;
+    nameBox.value = storedName;
+    storedNameSpan.innerText = storedName;
+    newUserLabel.style.display = "inline";
+    showModal();
+  } else {
+    welcome.innerText = "Welcome new user";
+    newUserLabel.style.display = "none";
+  }
 }
 
 function resetUser() {
-    deleteCookie("firstName");
-    document.getElementById("patientForm").reset();
-    document.getElementById("welcomeMessage").textContent = "Welcome new user";
-    document.getElementById("newUserLabel").style.display = "none";
+  deleteCookie("firstName");
+  localStorage.clear();
+  document.getElementById("patientForm").reset();
+  document.getElementById("welcomeMessage").innerText = "Welcome new user";
+  document.getElementById("newUserLabel").style.display = "none";
+  document.getElementById("modal").style.display = "none";
 }
 
-function reviewData() {
-    const form = document.getElementById("patientForm");
-    const firstName = form.firstName.value;
-    const email = form.email.value;
-    const phone = form.phone.value;
-    const remember = document.getElementById("rememberMe").checked;
+function handleSubmit(event) {
+  event.preventDefault();
+  const name = document.getElementById("first_name").value.trim();
+  const remember = document.getElementById("rememberMe").checked;
 
-    let output = `<p><strong>Name:</strong> ${firstName}</p>`;
-    output += `<p><strong>Email:</strong> ${email}</p>`;
-    output += `<p><strong>Phone:</strong> ${phone}</p>`;
+  if (remember && name) {
+    setCookie("firstName", name, 48);
+    localStorage.setItem("first_name", name);
+  } else {
+    deleteCookie("firstName");
+    localStorage.clear();
+  }
 
-    document.getElementById("reviewOutput").innerHTML = output;
-    document.getElementById("modalReview").style.display = "block";
+  alert("Form submitted!\n(Thank you page would load here.)");
+  return false;
+}
 
-    if (remember) setCookie("firstName", firstName, 2);
-    else deleteCookie("firstName");
+function showModal() {
+  document.getElementById("modal").style.display = "block";
 }
 
 function closeModal() {
-    document.getElementById("modalReview").style.display = "none";
+  document.getElementById("modal").style.display = "none";
 }
 
-function submitData() {
-    alert("Thank you for your submission. We will contact you shortly.");
-    closeModal();
-    document.getElementById("patientForm").reset();
-    localStorage.clear();
+function restoreData() {
+  const form = document.getElementById("patientForm");
+  for (let i = 0; i < form.elements.length; i++) {
+    const field = form.elements[i];
+    if (localStorage.getItem(field.name)) {
+      field.value = localStorage.getItem(field.name);
+    }
+  }
+  closeModal();
 }
 
+function storeAllFields() {
+  const form = document.getElementById("patientForm");
+  for (let i = 0; i < form.elements.length; i++) {
+    const field = form.elements[i];
+    if (field.name && field.value) {
+      localStorage.setItem(field.name, field.value);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("patientForm");
+  if (form) {
+    form.addEventListener("input", storeAllFields);
+  }
+});
