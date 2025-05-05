@@ -1,40 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Health is Wealth Medical - Homework 2</title>
-  <link href="style2.css" rel="stylesheet">
-  <script src="script2.js" defer></script>
-</head>
-<body onload="displayDate()">
-  <div class="banner">
-    <img src="logo.png" alt="Logo" width="50" height="50">
-    <h1>Health is Wealth Medical</h1>
-    <p>Today is: <span id="date-display"></span></p>
-  </div>
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #ffe6f0;
+  color: #660000;
+  margin: 20px;
+}
 
-  <form id="patientForm" onsubmit="return validateForm();">
-    <label>First Name: <input type="text" name="first_name" required></label>
-    <label>Phone: <input type="tel" name="phone" pattern="\d{3}-\d{3}-\d{4}" required></label>
-    <label>Password: <input type="password" id="password" required></label>
-    <label>Confirm Password: <input type="password" id="confirm_password" required></label>
+h1 {
+  color: #cc0044;
+}
 
-    <label>Pain Level:
-      <input type="range" id="painRange" min="1" max="10" value="5" oninput="updatePainLevel(this.value)">
-      <span id="painDisplay">Pain Level: 5/10</span>
-    </label>
+.banner {
+  background-color: #ffccd5;
+  padding: 15px;
+  text-align: center;
+}
 
-    <textarea name="symptoms" placeholder="Describe your symptoms here..."></textarea>
+form {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-top: 20px;
+}
 
-    <input type="button" value="REVIEW" onclick="reviewData()">
-    <input type="submit" value="SUBMIT">
-  </form>
+label {
+  display: block;
+  margin-top: 10px;
+}
 
-  <div id="reviewSection" class="review-box"></div>
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  font-family: inherit;
+}
 
-  <div class="footer">
-    <p>Health is Wealth Medical | Contact us at support@healthiswealthmedical | Mission Bend, TX</p>
-  </div>
-</body>
-</html>
+.review-box {
+  margin-top: 30px;
+  background-color: #fff0f5;
+  padding: 15px;
+  border: 1px solid #cc0044;
+}
