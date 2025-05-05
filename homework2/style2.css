@@ -1,115 +1,40 @@
-/*
-Program name: style2.css
-Author: Eden A.
-Date created: 2025-04-19
-Date last edited: 2025-04-19
-Version: 1.0
-Description: CSS for Homework 2 patient registration form - styled in pink/red with Times New Roman.
-*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health is Wealth Medical - Homework 2</title>
+  <link href="style2.css" rel="stylesheet">
+  <script src="script2.js" defer></script>
+</head>
+<body onload="displayDate()">
+  <div class="banner">
+    <img src="logo.png" alt="Logo" width="50" height="50">
+    <h1>Health is Wealth Medical</h1>
+    <p>Today is: <span id="date-display"></span></p>
+  </div>
 
-body {
-    font-family: 'Times New Roman', Times, serif;
-    background-color: #ffe6f0; /* light pink */
-    color: #660000; /* dark red text */
-    margin: 20px;
-}
+  <form id="patientForm" onsubmit="return validateForm();">
+    <label>First Name: <input type="text" name="first_name" required></label>
+    <label>Phone: <input type="tel" name="phone" pattern="\d{3}-\d{3}-\d{4}" required></label>
+    <label>Password: <input type="password" id="password" required></label>
+    <label>Confirm Password: <input type="password" id="confirm_password" required></label>
 
-h1 {
-    font-family: 'Times New Roman', Times, serif;
-    color: #cc0044; /* red */
-}
+    <label>Pain Level:
+      <input type="range" id="painRange" min="1" max="10" value="5" oninput="updatePainLevel(this.value)">
+      <span id="painDisplay">Pain Level: 5/10</span>
+    </label>
 
-.banner {
-    background-color: #ffccd5; /* soft pink */
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-}
+    <textarea name="symptoms" placeholder="Describe your symptoms here..."></textarea>
 
-.banner img {
-    vertical-align: middle;
-    margin-right: 10px;
-}
+    <input type="button" value="REVIEW" onclick="reviewData()">
+    <input type="submit" value="SUBMIT">
+  </form>
 
-form {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
+  <div id="reviewSection" class="review-box"></div>
 
-table {
-    width: 100%;
-    border-spacing: 10px;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 6px;
-    font-size: 14px;
-    border: 1px solid #d6336c; /* rose border */
-    border-radius: 4px;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-    width: auto;
-    margin-right: 5px;
-}
-
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-button {
-    background-color: #ff6699; /* pink */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover,
-button:hover {
-    background-color: #cc0044; /* red */
-}
-
-.footer {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #ffd6e0; /* lighter pink */
-    text-align: center;
-    font-size: 14px;
-    border-radius: 6px;
-    color: #660000;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-.review-box {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #fff0f5;
-    border: 1px solid #cc0044;
-    border-radius: 8px;
-    color: #660000;
-    font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-a {
-    color: #cc0044;
-    text-decoration: none;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* End of CSS file */
+  <div class="footer">
+    <p>Health is Wealth Medical | Contact us at support@healthiswealthmedical | Mission Bend, TX</p>
+  </div>
+</body>
+</html>
