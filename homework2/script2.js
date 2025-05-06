@@ -74,7 +74,7 @@ function reviewData() {
       <li><strong>Conditions:</strong> ${conditions}</li>
       <li><strong>Vaccinated:</strong> ${vaccinated}</li>
       <li><strong>Pain Level:</strong> ${document.getElementById("painRange").value}/10</li>
-      <li><strong>Desired Salary:</strong> ${document.getElementById("salaryDisplay").innerText}</li>
+      <li><strong>Pain Level:</strong> ${document.getElementById("painDisplay").innerText}</li>
       <li><strong>Symptoms:</strong> ${form["symptoms"].value || "None provided"}</li>
       <li><strong>User ID:</strong> ${form["user_id"].value.toLowerCase()}</li>
       <li><strong>Password:</strong> (hidden for security)</li>
