@@ -46,4 +46,55 @@ table {
 }
 
 th {
+  background-color: #ffccd5;
+  color: #660000;
+  font-size: 18px;
+  text-align: left;
+  padding: 10px;
+  border-bottom: 2px solid #cc0044;
+}
+
+td {
+  padding: 10px;
+  vertical-align: top;
+}
+
+input[type="range"] {
+  width: 80%;
+}
+
+input[type="submit"],
+input[type="button"] {
+  width: 45%;
+  padding: 10px;
+  margin: 10px 5px;
+  background-color: #cc0044;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #a20036;
+}
+
+.review-box {
+  margin-top: 30px;
+  background-color: #fff0f5;
+  padding: 15px;
+  border: 1px solid #cc0044;
+  border-radius: 6px;
+  box-shadow: 0 0 8px #cc0044;
+}
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #660000;
+}
+
 
