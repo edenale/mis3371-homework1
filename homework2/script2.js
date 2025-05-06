@@ -34,7 +34,7 @@ function validateForm() {
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s\"']).{8,30}$/;
 
   if (!regex.test(passwordVal)) {
-    alert("Password must be 8–30 characters long, include uppercase, lowercase, a number, and a special character. No quotes.");
+    alert("Password must be 8–30 characters, include uppercase, lowercase, number, and a special character. No quotes.");
     return false;
   }
 
@@ -43,8 +43,11 @@ function validateForm() {
     return false;
   }
 
-  if (passwordVal.toLowerCase().includes(userIdVal) || passwordVal.toLowerCase().includes(document.getElementById("first_name").value.toLowerCase())) {
-    alert("Password should not contain your User ID or name.");
+  if (
+    passwordVal.toLowerCase().includes(userIdVal) ||
+    passwordVal.toLowerCase().includes(document.getElementById("first_name").value.toLowerCase())
+  ) {
+    alert("Password must not include your User ID or name.");
     return false;
   }
 
@@ -53,7 +56,11 @@ function validateForm() {
 
 function reviewData() {
   const form = document.forms["patientForm"];
-  const conditions = [...form["conditions"]].filter(box => box.checked).map(box => box.value).join(", ") || "None";
+  const conditions = [...form["conditions"]]
+    .filter(box => box.checked)
+    .map(box => box.value)
+    .join(", ") || "None";
+
   const vaccinated = form["vaccinated"].value || "Not selected";
 
   const review = `
