@@ -2,18 +2,49 @@ function displayDate() {
   const today = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById("date-display").innerText = today.toLocaleDateString("en-US", options);
+
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  const maxDate = `${year}-${month}-${day}`;
+  const minYear = year - 120;
+  const minDate = `${minYear}-${month}-${day}`;
+  document.getElementById("dob").setAttribute("max", maxDate);
+  document.getElementById("dob").setAttribute("min", minDate);
 }
 
 function updatePainLevel(val) {
   document.getElementById("painDisplay").innerText = `Pain Level: ${val}/10`;
 }
 
-function validateForm() {
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm_password").value;
+function updateSalary(val) {
+  document.getElementById("salaryDisplay").innerText = `$${parseInt(val).toLocaleString()}/year`;
+}
 
-  if (password !== confirmPassword) {
+function validateForm() {
+  const userId = document.getElementById("user_id");
+  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirm_password");
+
+  userId.value = userId.value.toLowerCase();
+
+  const passwordVal = password.value;
+  const userIdVal = userId.value;
+
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s\"']).{8,30}$/;
+
+  if (!regex.test(passwordVal)) {
+    alert("Password must be 8–30 characters long, include uppercase, lowercase, a number, and a special character. No quotes.");
+    return false;
+  }
+
+  if (passwordVal !== confirmPassword.value) {
     alert("Passwords do not match.");
+    return false;
+  }
+
+  if (passwordVal.toLowerCase().includes(userIdVal) || passwordVal.toLowerCase().includes(document.getElementById("first_name").value.toLowerCase())) {
+    alert("Password should not contain your User ID or name.");
     return false;
   }
 
@@ -22,13 +53,27 @@ function validateForm() {
 
 function reviewData() {
   const form = document.forms["patientForm"];
-  let output = "<h2>PLEASE REVIEW THIS INFORMATION</h2><ul>";
-  output += "<li>First Name: " + form["first_name"].value + "</li>";
-  output += "<li>Phone: " + form["phone"].value + "</li>";
-  output += "<li>Pain Level: " + document.getElementById("painRange").value + "/10</li>";
-  output += "<li>Symptoms: " + form["symptoms"].value + "</li>";
-  output += "<li>Password: (hidden for security)</li>";
-  output += "</ul>";
-  document.getElementById("reviewSection").innerHTML = output;
+  const conditions = [...form["conditions"]].filter(box => box.checked).map(box => box.value).join(", ") || "None";
+  const vaccinated = form["vaccinated"].value || "Not selected";
+
+  const review = `
+    <h2>PLEASE REVIEW THIS INFORMATION</h2>
+    <ul>
+      <li><strong>Name:</strong> ${form["first_name"].value} ${form["middle_initial"].value || ""} ${form["last_name"].value}</li>
+      <li><strong>Date of Birth:</strong> ${form["dob"].value}</li>
+      <li><strong>Email:</strong> ${form["email"].value}</li>
+      <li><strong>Phone:</strong> ${form["phone"].value}</li>
+      <li><strong>Address:</strong> ${form["address1"].value} ${form["address2"].value || ""}, ${form["city"].value}, ${form["state"].value} ${form["zip"].value}</li>
+      <li><strong>Conditions:</strong> ${conditions}</li>
+      <li><strong>Vaccinated:</strong> ${vaccinated}</li>
+      <li><strong>Pain Level:</strong> ${document.getElementById("painRange").value}/10</li>
+      <li><strong>Desired Salary:</strong> ${document.getElementById("salaryDisplay").innerText}</li>
+      <li><strong>Symptoms:</strong> ${form["symptoms"].value || "None provided"}</li>
+      <li><strong>User ID:</strong> ${form["user_id"].value.toLowerCase()}</li>
+      <li><strong>Password:</strong> (hidden for security)</li>
+    </ul>
+  `;
+  document.getElementById("reviewSection").innerHTML = review;
 }
+
 
