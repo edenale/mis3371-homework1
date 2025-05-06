@@ -7,13 +7,14 @@ function populateStates() {
     "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
     "DC","PR"
   ];
-  
+
   const select = document.getElementById("state");
   states.forEach(state => {
     const option = document.createElement("option");
     option.value = state;
-    option.text = state;
+    option.textContent = state;
     select.appendChild(option);
   });
 }
+
 
