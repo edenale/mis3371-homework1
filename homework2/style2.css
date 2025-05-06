@@ -7,18 +7,22 @@ body {
 
 h1 {
   color: #cc0044;
+  margin: 0;
 }
 
 .banner {
   background-color: #ffccd5;
   padding: 15px;
   text-align: center;
+  border-radius: 8px;
 }
 
 form {
   background-color: #ffffff;
   padding: 20px;
   margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #cc0044;
 }
 
 label {
@@ -26,16 +30,20 @@ label {
   margin-top: 10px;
 }
 
-input, textarea {
+input, textarea, select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
   font-family: inherit;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  border-radius: 4px;
 }
 
-.review-box {
-  margin-top: 30px;
-  background-color: #fff0f5;
-  padding: 15px;
-  border: 1px solid #cc0044;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
+
+th {
+
